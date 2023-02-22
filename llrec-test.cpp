@@ -67,7 +67,19 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
+struct IsEven
+{
+    bool operator()(int num) {
+        return (num % 2) == 0;
+    }
+};
 
+struct IsOdd
+{
+    bool operator()(int num) {
+        return (num % 2) != 0;
+    }
+};
 
 
 
@@ -86,10 +98,39 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* headcopy = readList(argv[1]);
+    Node* headcopy2 = readList(argv[1]);
+    // test case:
 
+    Node* s1;
+    Node* b1;
+    // test llpivot function
+    llpivot(head, s1, b1, 10);
 
-
+    cout << "Small list: ";
+    print(s1);
     
+    cout << "Big list: ";
+    print(b1);
+
+    // test filter function
+    IsEven e1;
+    IsOdd o1;
+
+    Node* filtered;
+
+    filtered = llfilter(headcopy, o1);
+    
+    cout << "filtered list: ";
+    print(filtered);
+
+    Node* filtered2;
+
+    filtered2 = llfilter(headcopy2, e1);
+    
+    cout << "filtered list: ";
+    print(filtered2);
+
     return 0;
 
 }
